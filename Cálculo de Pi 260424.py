@@ -10,12 +10,12 @@ def CALCULAR():
     CONTADOR = 0
 
     R = 100663296
-    H = int(R / 2 - 0.5)
+    H = int(R / 2)
     BM = R * RAIZ(3) / 2
     R2 = R * R
     SUMA = 0
 
-    for i in range(H + 1):
+    for i in range(H):
         Y = i + 0.5
         SUMA += RAIZ(R2 - Y * Y) - BM
         if SUMA >= EXCESO:
