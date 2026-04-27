@@ -1,15 +1,16 @@
 import math
 
 
-def CALCULAR():
+def RAIZ(valor):
+    return math.sqrt(valor)
 
-    def RAIZ(valor):
-        return math.sqrt(valor)
+
+def CALCULAR():
 
     EXCESO = 1 << 32
     CONTADOR = 0
 
-    R = 100663296
+    R = 3 << 25
     H = int(R / 2)
     BM = R * RAIZ(3) / 2
     R2 = R * R
@@ -22,8 +23,9 @@ def CALCULAR():
             SUMA -= EXCESO
             CONTADOR += 1
 
-    TOTAL = ((SUMA + CONTADOR * EXCESO) * 4 / R2 + RAIZ(3) / 2) * 3
+    TOTAL = ((SUMA + CONTADOR * EXCESO + BM * R / 4) / R2) * 12
+
     return TOTAL
 
 
-print(CALCULAR())
+print("Pi= ", CALCULAR())
