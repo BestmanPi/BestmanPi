@@ -1,31 +1,21 @@
-import math
+from math import sqrt
 
 
-def RAIZ(valor):
-    return math.sqrt(valor)
+def pi():
+
+    SCALE = 7 << 22
+    RADIUS = SCALE
+    R2 = RADIUS * RADIUS
+    small = 0
+    big = 0
+
+    for i in range(RADIUS // 2):
+        y = i + 0.5
+        small += sqrt(R2 - y * y)
+        if small >= RADIUS:
+            small -= RADIUS
+            big += RADIUS
+    return (small / R2 - sqrt(3) / 8 + big / R2) * 12
 
 
-def CALCULAR():
-
-    EXCESO = 1 << 32
-    CONTADOR = 0
-
-    R = 3 << 25
-    H = int(R / 2)
-    BM = R * RAIZ(3) / 2
-    R2 = R * R
-    SUMA = 0
-
-    for i in range(H):
-        Y = i + 0.5
-        SUMA += RAIZ(R2 - Y * Y) - BM
-        if SUMA >= EXCESO:
-            SUMA -= EXCESO
-            CONTADOR += 1
-
-    TOTAL = ((SUMA + CONTADOR * EXCESO + BM * R / 4) / R2) * 12
-
-    return TOTAL
-
-
-print("Pi= ", CALCULAR())
+print("Pi= ", pi())
