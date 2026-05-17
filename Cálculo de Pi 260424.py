@@ -1,17 +1,14 @@
-from math import sqrt
+from math import modf, sqrt
 
-SCALE = 7 << 22
-RADIUS = SCALE
-R2 = RADIUS * RADIUS
+SCL = 5 << 22    # escala lineal
+SCS = SCL * SCL    # escala superficial
 small = 0
 big = 0
 
-for i in range(RADIUS // 2):
+for i in range(SCL // 2):
     y = i + 0.5
-    small += sqrt(R2 - y * y)
-    if small >= RADIUS:
-        small -= RADIUS
-        big += RADIUS
+    low, high = modf(sqrt(SCS - y * y))
+    small += low
+    big += high
 
-
-print("Pi= ", (small / R2 - sqrt(3) / 8 + big / R2) * 12)
+print("Pi= ", (small / SCS - sqrt(3) / 8 + big / SCS) * 12)
